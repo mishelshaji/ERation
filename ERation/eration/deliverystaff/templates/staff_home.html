@@ -1,0 +1,53 @@
+{% extends "staff_base.html" %}
+{% block content %}
+{% if message %}
+<script>
+    alert('{{ message }}')
+</script>
+{% endif %}
+<div class="container">
+    <h1 class="text-center">Your tasks</h1>
+    <div class="card-header">
+        {% if orders %}
+        <form method="POST">
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Address</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                {% for o in orders %}
+                <tr>
+                    <td>{{ o.product }}</td>
+                    <td>{{ o.customer.address }}</td>
+                    <td>{{ o.quantity }}</td>
+                    <td><button type="submit" class="btn btn-link text-success"
+                            onclick="return markdelivered('{{ o.id }}')">Mark Delivered</button></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <input type="hidden" name="orderid" id="orderid">
+            <input type="hidden" name="otp" id="otp">
+            {% csrf_token %}
+        </form>
+        {% else %}
+        <h2 class="text-center text-success">You have no pending orders</h2>
+        {% endif %}
+
+    </div>
+</div>
+<script>
+    function markdelivered(orderid) {
+        document.getElementById('orderid').value = orderid;
+        var otp = prompt("Please enter the secred OTP number for order " + orderid);
+        if (otp.length == 4 && !isNaN(otp)) {
+            document.getElementById('otp').value = otp;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+{% endblock content %}

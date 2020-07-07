@@ -1,0 +1,18 @@
+{% extends "shop_base.html" %}
+{% block content %}
+<div class="container">
+  <h1 class="text-center mb-5">Recent Stock Updates</h1>
+  <div class="container-fluid">
+    <div id="dynamiccontent">
+      <table class="table">
+        {% for s in data %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>{{ s.date }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

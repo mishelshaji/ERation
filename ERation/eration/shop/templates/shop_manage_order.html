@@ -1,0 +1,40 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+<script>
+  alert('{{ message }}');
+</script>
+{% endif %}
+<div class="container">
+  <h1 class="text-center">Update Order</h1>
+  <form action="" method="post" id="updateform">
+    <div class="form-group card-header">
+      <label>Staff</label>
+      <select name="staff" class="form-control">
+        {% for s in stafflist %}
+        <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="status" id="status">
+      <div class="row mt-5 mb-5">
+        <div class="col-sm-6">
+          <button type="button" class="btn btn-primary btn-block" onclick="sendform('approve')">Approve and send OTP</button>
+        </div>
+        <div class="col-sm-6">
+          <button type="button" class="btn btn-danger btn-block" onclick="sendform('reject')">Reject Order</button>
+        </div>
+        {% csrf_token %}
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  function sendform(option) { 
+    if(!confirm("Do you want to " + option + " this order?")){
+      return;
+    }
+    document.getElementById('status').value = option;
+    document.getElementById('updateform').submit();
+  }
+</script>
+{% endblock content %}

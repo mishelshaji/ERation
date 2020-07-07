@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if products %}
+<div class="container">
+  <h2 class="text-center mt-5">Products</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Unit</th>
+        <th>Details</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for p in products %}
+        <tr>
+          <td scope="row">{{ p.name }}</td>
+          <td>{{ p.unit }}</td>
+          <td>{{ p.details }}</td>
+          <td>
+            <a href="{% url 'viewproduct' id=p.id %}">Edit</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+{% if not products %}
+  <h3 class="text-center mt-5">
+    You have not added any products. Add a product 
+    <a href="{% url 'newproduct' %}"class="text-link">here</a>
+  </h3>
+{% endif %}
+{% endblock content %}

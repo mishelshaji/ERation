@@ -1,0 +1,19 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+<h1 class="text-center">Manage Customer</h1>
+<div class="container">
+    <form action="" method="post">
+        <table class="table">
+            {{ data.as_table }}
+            {% csrf_token %}
+        </table>
+        <button type="submit" class="btn btn-success btn-block mb-2">Update</button>
+    </form>
+    <a href="{% url 'shop_delete_customer' id=id %}" class="btn btn-danger btn-block mb-5" onclick="confirm('Do you want to delete this user?')">Delete</a>
+</div>
+{% endblock content %}

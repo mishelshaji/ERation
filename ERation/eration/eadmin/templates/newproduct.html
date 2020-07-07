@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h1 class="text-center">New Product</h1>
+  <form action="" method="post">
+      <table class="table">
+        {{ form.as_table }}
+      </table>
+      {% csrf_token %}
+      <button class="btn btn-primary btn-block">Save New Product</button>
+  </form>
+  <p class="text-center">*You are adding new products here. Please pick a unique name</p>
+</div>
+{% endblock content %}

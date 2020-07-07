@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if data %}
+<div class="container">
+  <h1 class="text-center">Product Allocations</h1>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Card</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for a in data %}
+        <tr>
+          <td scope="row">{{ a.card_name }}</td>
+          <td>{{ a.product }}</td>
+          <td>{{ a.quantity }}</td>
+          <td>
+            <a href="{% url 'deleteallocation' id=a.id %}" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+{% if not data %}
+  <h3 class="text-center mt-5">
+    You have not added any Allocations. Add one 
+    <a href="{% url 'newallocation' %}"class="text-link">here</a>
+  </h3>
+{% endif %}
+{% endblock content %}

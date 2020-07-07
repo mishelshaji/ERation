@@ -1,0 +1,29 @@
+{% extends "shop_base.html" %}
+{% block content %}
+<div class="container">
+  <h1 class="text-center mb-5">Stock Update</h1>
+  <a href="{% url 'shop_view_stock_updates' %}" class="text-center">View Updates</a>
+  <div class="container-fluid">
+    <form action="" onsubmit="return confirm('Do youwant to update the recods? It cannot be undone.')" method="POST">
+      <div class="form-group">
+        <label>Stock Name</label>
+        <input type="text" name="name" class="form-control" required maxlength="20">
+      </div>
+      <div id="dynamiccontent">
+        <table class="table">
+          {% for p in products %}
+          <tr>
+            <td>{{ p.name }}</td>
+            <td>
+              <input type="number" name="{{ p.name }}" class="form-control" placeholder="Enter new stock" min="100" max="1000" maxlength="4" value="0" required>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger" style="float: right;">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}

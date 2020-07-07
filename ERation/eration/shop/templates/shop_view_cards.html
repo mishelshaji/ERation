@@ -1,0 +1,34 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if data %}
+<div class="container">
+  <h1 class="text-center">Cards</h1>
+  <table class="table table-bordered table-striped table-hover" title="Only admins can add, edit or delete cards.">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Card</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for a in data %}
+        <tr>
+          <td scope="row">{{ a.card_name }}</td>
+          <td><a href="{% url 'view_shop_allocations' %}">View Allocations</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+{% if not data %}
+  <h3 class="text-center mt-5">
+    No Cards found. Please wait for admin to add cards.
+  </h3>
+{% endif %}
+{% endblock content %}

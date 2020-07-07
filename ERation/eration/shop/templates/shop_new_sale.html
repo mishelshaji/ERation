@@ -1,0 +1,23 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+      window.location.href="{% url 'shop_add_sales' %}?cardno={{ cardno }}";
+  </script>
+{% endif %}
+  <div class="container">
+      <h1 class="text-center m-b-5">Shop Details</h1>
+
+      <form action="" method="post">
+          {{ form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-warning btn-block mb-5">Update</button>
+      </form>
+  </div>
+  <style>
+      .errorlist{
+          color: red;
+      }
+  </style>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if data %}
+<div class="container">
+  <h1 class="text-center">Delivery Staff List</h1>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for s in data %}
+        <tr>
+          <td scope="row">{{ s.name }}</td>
+          <td>{{ s.id.email }}</td>
+          <td>{{ s.address }}</td>
+          <td><a href="{% url 'shop_edit_delivery_staff' id=s.id %}" class="btn btn-link">Edit</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+{% if not data %}
+  <h3 class="text-center mt-5">
+    No Cards found. Please wait for admin to add cards.
+  </h3>
+{% endif %}
+{% endblock content %}

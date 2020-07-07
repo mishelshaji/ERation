@@ -1,0 +1,55 @@
+{% extends "shop_base.html" %}
+{% block content %}
+<div class="container">
+    <form action="" class="row mt-5" method="POST">
+        <div class="form-group col">
+            <select name="month" class="form-control">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">Decenber</option>
+            </select>
+        </div>
+        <div class="form-group col">
+            <select name="year" class="form-control">
+                <option value="2020">2020</option>
+            </select>
+        </div>
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary mb-5">Generate report</button>
+    </form>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>Name</td>
+            <td>Card Number</td>
+            <td>Product</td>
+            <td>Quantity</td>
+            <td>Year</td>
+            <td>Month</td>
+            <td>Day</td>
+        </tr>
+        {% for i in data %}
+          <tr>
+              <td>{{ i.customer_id.name }}</td>
+              <td>{{ i.customer_id.card_number }}</td>
+              <td>{{ i.product }}</td>
+              <td>{{ i.quantity }}</td>
+              <td>{{ i.year }}</td>
+              <td>{{ i.month }}</td>
+              <td>{{ i.day }}</td>
+          </tr>
+        {% empty %}
+          <h1>No data found</h1>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

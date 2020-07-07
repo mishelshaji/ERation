@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+{% if data %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Card Number</th>
+      <th>Card Type</th>
+      <th>Phone</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in data %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.card_number }}</td>
+      <td>{{ c.card_type }}</td>
+      <td>{{ c.phone }}</td>
+      <td><a href="{% url 'viewcustomer' id=c.id %}" class="text-link">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+{% if not data %}
+<h3 class="text-center mt-5">No customers found. You can add new customere
+  <a href="{% url 'shop_new_customer' %}">here.</a>
+</h3>
+{% endif %}
+{% endblock content %}

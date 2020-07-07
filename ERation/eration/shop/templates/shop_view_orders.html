@@ -1,0 +1,40 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if data %}
+<div class="container">
+  <h1 class="text-center">Pending Orders</h1>
+  <table class="table table-bordered table-striped table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Ordered By</th>
+        <th>Card Number</th>
+        <th>Product</th>
+        <th>Ordered On</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for d in data %}
+        <tr>
+          <td scope="row">{{ d.customer.name }}</td>
+          <td>{{ d.customer.card_number }}</td>
+          <td>{{ d.product.name }}</td>
+          <td>{{ d.day }}/{{ d.month }}/{{ d.year }}</td>
+          <td>{{ d.status }}</td>
+          <td><a href="{% url 'shop_manage_order' orderid=d.id %}">Manage</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% else %}
+<h2 class="text-center mt-5">No online orders</h2>
+<p class="text-center">Orders will appear here once your customer makes an online order.</p>
+{% endif %}
+{% endblock content %}

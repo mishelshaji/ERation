@@ -1,0 +1,17 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+  <div class="container">
+      <h1 class="text-center mb-5">Delivery Staff Registration</h1>
+      <form action="" method="post">
+          {{ userform }}
+          {{ form.as_table }}
+          {% csrf_token %}
+          <button class="btn btn-success btn-block mt-5 mb-5">Register</button>
+      </form>
+  </div>
+{% endblock content %}

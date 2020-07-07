@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+<h1 class="text-center">Customer registration</h1>
+<div class="container">
+    <form action="" method="post">
+        <table>
+            {{ data.as_p }}
+            {% csrf_token %}
+        </table>
+        <button type="submit" class="btn btn-success btn-block mb-5">Save</button>
+    </form>
+</div>
+{% endblock content %}

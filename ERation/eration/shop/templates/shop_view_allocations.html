@@ -1,0 +1,36 @@
+{% extends "shop_base.html" %}
+{% block content %}
+{% if message %}
+  <script>
+      alert('{{ message }}');
+  </script>
+{% endif %}
+{% if data %}
+<div class="container">
+  <h1 class="text-center">Product Allocations</h1>
+  <table class="table table-bordered table-striped table-hover" title="Only admins can add, edit or delete allocations for cards.">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Card</th>
+        <th>Product</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for a in data %}
+        <tr>
+          <td scope="row">{{ a.card_name }}</td>
+          <td>{{ a.product }}</td>
+          <td>{{ a.quantity }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+{% if not data %}
+  <h3 class="text-center mt-5">
+    No allocations found. Please wait for admin to add records.
+  </h3>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "customer_base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+            <h1 class="text-center">Your Complaints <a class="text-link" href="{% url 'customer_new_complaint' %}">+</a></h1>
+            <div style="background-color: rgb(233, 233, 233); border-radius: 10px" class="p-3">
+                {% if complaints %}
+                {% for c in complaints %}
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ c.title }}
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <b>Your message</b>
+                                {{ c.complaint }}
+                                <hr>
+                                <b>Reply by admin</b>
+                                {{ c.reply }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                    <h2 class="text-center">You posted no complaints</h2>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
