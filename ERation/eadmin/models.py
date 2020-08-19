@@ -5,8 +5,6 @@ from datetime import datetime
 # Create your models here.
 
 # Manager
-
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """

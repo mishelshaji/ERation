@@ -35,8 +35,8 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4"></div> -->
+            <div class="col-sm-4 offset-sm-4">
                 <div style="transform:  translateY(50%); background-color: #ffffff; border-radius: 15px; padding: 15px;">
                     <h1 class="text-center">Login</h1>
                     <form action="" method="post">
@@ -44,7 +44,9 @@
                         {% csrf_token %}
                         <br>
                         {% if message %}
-                        <p class="text-danger">{{ message }}</p>
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
                         {% endif %}
                         <button class="btn btn-primary btn-block">Login</button>
                     </form>

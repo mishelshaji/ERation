@@ -69,7 +69,7 @@ def usr_login(request):
 
             user = authenticate(username=email, password=password)
             if user:
-                request.session['username'] = user.email
+                # request.session['username'] = user.email
                 request.session['role'] = user.role
                 login(request, user)
                 if user.role == 'shop':
